@@ -20,17 +20,17 @@ pipeline {
 			}
 		}
 
-		stage ('BUILD DOCKER IMAGE') {
-			steps {
+		stage('Build Docker Image') {
+			   steps {
 				script {
 					try {
-						docker.build("${DOCKER_IMAGE_NAME}:${IMAGE_TAG}") 
-					}catch (Exception e) {
-						echo "Failed to build Docker image: ${e.message}"
-						echo "Failed to build Docker image"
+						docker.build("${DOCKER_IMAGE_NAME}:${IMAGE_TAG}")
+					} catch (Exception e) {
+						  echo "Failed to build Docker image: ${e.message}"
+						error "Failed to build Docker image"
 					}
 				}
-			}
+			}	
 		}
 
 		stage ('Push to DockerHub') {
