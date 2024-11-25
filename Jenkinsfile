@@ -38,10 +38,10 @@ pipeline {
 				script {
 					try {
 						withCredentials([usernamePassword(credentialsId: 'mustufa12' , usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-							sh """
+							sh '''
 							echo "$DOCKER_PASSWORD" | docker login -u  "$DOCKER_USERNAME" --password-stdin		
 							docker push ${DOCKER_IMAGE_NAME}:${IMAGE_TAG}
-							"""
+							'''
 						}
 					} catch (Exception e) {
 						echo "Failed to push Docker image to registry: ${e.message}"
