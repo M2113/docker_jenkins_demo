@@ -51,7 +51,7 @@ pipeline {
 			}
 		}
 	}
-}
+
 
 	post {
 		success {
@@ -61,3 +61,4 @@ pipeline {
 			echo 'Build or deployment failed.'
 		}
 	}
+}
