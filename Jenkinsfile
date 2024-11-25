@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	environment {
 		GIT_REPOSITORY_URL = 'https://github.com/M2113/docker_jenkins_demo.git'
-		DOCKER_IMAGE_NAME = 'M2113/docker_jenkins_demo'
+		DOCKER_IMAGE_NAME = 'mustufakhan12/docker_jenkins_demo'
 		IMAGE_TAG = '1.0'
 	}
 
@@ -38,7 +38,6 @@ pipeline {
 				script {
 					try {
 						withCredentials([usernamePassword(credentialsId: "mustufa12" , usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-						//Explicit login before push
 						sh """
 							echo "$DOCKER_PASSWORD" | docker login -u  "$DOCKER_USERNAME" --password-stdin		
 							docker push ${DOCKER_IMAGE_NAME}:${IMAGE_TAG}
@@ -52,6 +51,7 @@ pipeline {
 			}
 		}
 	}
+}
 
 	post {
 		success {
@@ -61,4 +61,3 @@ pipeline {
 			echo 'Build or deployment failed.'
 		}
 	}
-}
